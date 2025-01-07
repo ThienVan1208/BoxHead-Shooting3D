@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291775a94ef07f94d9351b7bce61a0d7, type: 3}
+  m_Name: LazerGunAttributesSO
+  m_EditorClassIdentifier: 
+  gunName: Lazer Gun
+  numberBullet: 10
+  totalBullet: 0
+  constTotalBullet: 5
+  timeReload: 2
+  outOfBullet: 1
+  timeShoot: 0.5
+  bulletContainerSO: {fileID: 0}
+  canShoot: 1
+  listBullet: []
+  changeTotalBulletEventSO: {fileID: 11400000, guid: 45ad1b847281f734a9bf215fffaec3c7, type: 2}
+  gunModel: {fileID: 7834579475720137142, guid: 9c3ddaea01b8c544fba19c66698cd15e, type: 3}
+  damage: 0.1
+  shootSoundSO: {fileID: 0}
+  reloadSoundSO: {fileID: 0}

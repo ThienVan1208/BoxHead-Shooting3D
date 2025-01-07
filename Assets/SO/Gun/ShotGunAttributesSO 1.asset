@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291775a94ef07f94d9351b7bce61a0d7, type: 3}
+  m_Name: ShotGunAttributesSO 1
+  m_EditorClassIdentifier: 
+  gunName: ShotGun
+  numberBullet: 4
+  totalBullet: 21
+  constTotalBullet: 21
+  timeReload: 3
+  outOfBullet: 0
+  timeShoot: 0.5
+  bulletContainerSO: {fileID: 11400000, guid: f99240daf97699144b2d39ddadd31a50, type: 2}
+  canShoot: 1
+  listBullet:
+  - {fileID: 0}
+  changeTotalBulletEventSO: {fileID: 11400000, guid: 45ad1b847281f734a9bf215fffaec3c7, type: 2}
+  gunModel: {fileID: 2653494827474788407, guid: 770fb587bd6eee448b9ee475c15f0012, type: 3}
+  damage: 2
+  shootSoundSO: {fileID: 11400000, guid: f1b467beb12359a41b75934d2591accb, type: 2}
+  reloadSoundSO: {fileID: 11400000, guid: fdf3fd6a6bac687449cca8675f6da6d0, type: 2}

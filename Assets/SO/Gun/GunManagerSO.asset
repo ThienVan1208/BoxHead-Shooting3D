@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f2eb0af394697488e799974590d81f, type: 3}
+  m_Name: GunManagerSO
+  m_EditorClassIdentifier: 
+  gunList:
+  - {fileID: 11400000, guid: 7e40f0d101b2a24498eeaf7238b71069, type: 2}
+  - {fileID: 11400000, guid: 7a3c1a1d488c7b54fb5e778d2f857a28, type: 2}
+  - {fileID: 11400000, guid: 8d3a1623560b8a2429e137a0d3204a5c, type: 2}
+  playerDieEventSO: {fileID: 11400000, guid: 9844c2e1d159b7442b7c6c027db37bdd, type: 2}
+  curGun: 0
+  prevGun: 2
+  curDamage: 1
+  canChangeGun: 1

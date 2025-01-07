@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291775a94ef07f94d9351b7bce61a0d7, type: 3}
+  m_Name: PistolGunAttributesSO 1
+  m_EditorClassIdentifier: 
+  gunName: Pistol
+  numberBullet: 10
+  totalBullet: 0
+  constTotalBullet: 27
+  timeReload: 2
+  outOfBullet: 1
+  timeShoot: 0.15
+  bulletContainerSO: {fileID: 11400000, guid: 88b0058394e60ac4fa11e1a7d9a2e781, type: 2}
+  canShoot: 1
+  listBullet:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  changeTotalBulletEventSO: {fileID: 11400000, guid: 45ad1b847281f734a9bf215fffaec3c7, type: 2}
+  gunModel: {fileID: 8504844207547674509, guid: a4414228d329a0b4c94da2033524745b, type: 3}
+  damage: 1
+  shootSoundSO: {fileID: 11400000, guid: 41d8744f803a70b4c9c203867a836fb2, type: 2}
+  reloadSoundSO: {fileID: 11400000, guid: 16343e75b314b7b4fb57c922c7f8b11e, type: 2}
