@@ -17,26 +17,28 @@ public class EnemyBase : MonoBehaviour
 
     // Used to change damage taken.
     [SerializeField] private FloatEventChannelSO _DamageEventChannelSO;
+    protected bool _isAttack = false;
     
     private float _damageTaken;
     private void OnEnable() {
+        _isAttack = false;
         _damageTaken = _gunManagerSO.curDamage;
         _curHP = _maxHP;
         _DamageEventChannelSO.OnRaisedEvent += ChangeDamageTaken;
-
     }
     private void OnDisable() {
         _DamageEventChannelSO.OnRaisedEvent -= ChangeDamageTaken;
     }
    
     private void ChasePlayer(){
+        float curSpeed = _isAttack ? 0 : _speed;
+        //if(_isAttack) return;
         Vector3 dir = _playerTransformSO.playerTransform.transform.position - transform.position;
-        _rb.velocity = dir * _speed;
+        _rb.velocity = dir * curSpeed;
         transform.forward = -dir;
     }
     private void Update() {
         ChasePlayer();
-        Debug.Log(_damageTaken);
     }
     private void ChangeDamageTaken(float damageTaken) {
         _damageTaken = damageTaken;

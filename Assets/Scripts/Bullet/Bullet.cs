@@ -6,29 +6,25 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _speed;
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Sparkle _sparkleEffect;
+    [SerializeField] private LayerMask _layer;
     private void OnEnable() {
         MoveForward();
     }
     private void OnDisable() {
+        _sparkleEffect.transform.position = transform.position;
+        _sparkleEffect.transform.forward = transform.forward;
+        _sparkleEffect.ActiveSpark();
         _rb.velocity = Vector3.zero;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     private void MoveForward(){
         _rb.velocity = transform.forward * _speed;
     }
     private void OnTriggerEnter(Collider other) {
-        bool condition = other.gameObject.layer == Constant.LAYER_GROUND 
-        || other.gameObject.layer == Constant.LAYER_WALL
-        || other.gameObject.layer == Constant.LAYER_ENEMY;
-        if (condition){
+        // bool condition = other.gameObject.layer == Constant.LAYER_GROUND 
+        // || other.gameObject.layer == Constant.LAYER_WALL
+        // || other.gameObject.layer == Constant.LAYER_ENEMY;
+        if (((1 << other.gameObject.layer) & _layer) != 0){
             gameObject.SetActive(false);
         }
     }

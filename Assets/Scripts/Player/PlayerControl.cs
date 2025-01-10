@@ -97,4 +97,9 @@ public class PlayerControl : MonoBehaviour
         _playerAttributesSO.isDie = true;
         Debug.Log("Player Dies");
     }
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == Constant.TAG_ENEMY_BULLET){
+            _changeHPEventSO.RaiseEvent(10);
+        }
+    }
 }
