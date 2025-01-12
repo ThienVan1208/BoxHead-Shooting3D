@@ -11,9 +11,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private bool _isGrounded;
     [SerializeField] private Transform _groundCheckPos;
     [SerializeField] private Transform _camPos;
-    [SerializeField] private FloatEventChannelSO _changeHPEventSO;
-    [SerializeField] private Slider _hpSlider;
-    [SerializeField] private VoidEventChannelSO _PlayerDieEventSO;
+    // [SerializeField] private FloatEventChannelSO _changeHPEventSO;
+    // [SerializeField] private Slider _hpSlider;
+    // [SerializeField] private VoidEventChannelSO _PlayerDieEventSO;
     private bool _jumpDelay;
     private Transform _camBrain;
     private void Awake() {
@@ -26,15 +26,15 @@ public class PlayerControl : MonoBehaviour
     private void OnEnable() {
         _inputReaderSO.moveAction += GetMoveAction;
         _inputReaderSO.jumpAction += Jump;
-        _changeHPEventSO.OnRaisedEvent += MinusHP;
-        _PlayerDieEventSO.OnRaisedEvent += Die;
-        InitHP();
+        // _changeHPEventSO.OnRaisedEvent += MinusHP;
+        // _PlayerDieEventSO.OnRaisedEvent += Die;
+        // InitHP();
     }
     private void OnDisable() {
         _inputReaderSO.moveAction -= GetMoveAction;
         _inputReaderSO.jumpAction -= Jump;
-        _changeHPEventSO.OnRaisedEvent -= MinusHP;
-        _PlayerDieEventSO.OnRaisedEvent -= Die;
+        // _changeHPEventSO.OnRaisedEvent -= MinusHP;
+        // _PlayerDieEventSO.OnRaisedEvent -= Die;
     }
     private void GetMoveAction(Vector2 dir){
         
@@ -75,31 +75,31 @@ public class PlayerControl : MonoBehaviour
         transform.forward = _camPos.forward;
         if(_jumpDelay) CheckGround();
     }
-    private void InitHP(){
-        _hpSlider.maxValue = _playerAttributesSO.maxHP;
-        _hpSlider.value = _playerAttributesSO.maxHP;
-        _playerAttributesSO.curHP = _playerAttributesSO.maxHP;
-        _playerAttributesSO.isDie = false;
-    }
+    // private void InitHP(){
+    //     _hpSlider.maxValue = _playerAttributesSO.maxHP;
+    //     _hpSlider.value = _playerAttributesSO.maxHP;
+    //     _playerAttributesSO.curHP = _playerAttributesSO.maxHP;
+    //     _playerAttributesSO.isDie = false;
+    // }
 
-    private void MinusHP(float amount){
-        _playerAttributesSO.curHP -= amount;
-        _hpSlider.value = _playerAttributesSO.curHP;
-        CheckDie();
-    }
-    private void CheckDie(){
-        if(_playerAttributesSO.curHP <= 0){
-            _playerAttributesSO.curHP = 0f;
-            _PlayerDieEventSO.RaiseEvent();
-        }
-    }
-    private void Die(){
-        _playerAttributesSO.isDie = true;
-        Debug.Log("Player Dies");
-    }
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == Constant.TAG_ENEMY_BULLET){
-            _changeHPEventSO.RaiseEvent(10);
-        }
-    }
+    // private void MinusHP(float amount){
+    //     _playerAttributesSO.curHP -= amount;
+    //     _hpSlider.value = _playerAttributesSO.curHP;
+    //     CheckDie();
+    // }
+    // private void CheckDie(){
+    //     if(_playerAttributesSO.curHP <= 0){
+    //         _playerAttributesSO.curHP = 0f;
+    //         _PlayerDieEventSO.RaiseEvent();
+    //     }
+    // }
+    // private void Die(){
+    //     _playerAttributesSO.isDie = true;
+    //     Debug.Log("Player Dies");
+    // }
+    // private void OnTriggerEnter(Collider other) {
+    //     if(other.gameObject.tag == Constant.TAG_ENEMY_BULLET){
+    //         _changeHPEventSO.RaiseEvent(10);
+    //     }
+    // }
 }

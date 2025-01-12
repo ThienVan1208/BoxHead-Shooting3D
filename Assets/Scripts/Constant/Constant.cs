@@ -10,4 +10,6 @@ public class Constant
     public const string TAG_ENEMY_BULLET = "EnemyBullet";
     public const int LAYER_BULLET = 7; 
     public const int LAYER_ENEMY = 8;
+    public const int LAYER_IGNORE_RAYCAST = 2;
+    public const string TAG_OUTSIDE_AUDIO_PLAYER = "OutsideAudioPlayer";
 }

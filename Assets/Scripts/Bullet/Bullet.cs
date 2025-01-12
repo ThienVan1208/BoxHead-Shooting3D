@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _speed;
     [SerializeField] private Sparkle _sparkleEffect;
-    [SerializeField] private LayerMask _layer;
+    [SerializeField] protected LayerMask _layer;
     private void OnEnable() {
         MoveForward();
     }
@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     private void MoveForward(){
         _rb.velocity = transform.forward * _speed;
     }
-    private void OnTriggerEnter(Collider other) {
+    protected virtual void OnTriggerEnter(Collider other) {
         // bool condition = other.gameObject.layer == Constant.LAYER_GROUND 
         // || other.gameObject.layer == Constant.LAYER_WALL
         // || other.gameObject.layer == Constant.LAYER_ENEMY;

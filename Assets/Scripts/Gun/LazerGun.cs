@@ -104,6 +104,7 @@ public class LazerGun : GunBase
     }
     private IEnumerator WaitForReload(float time)
     {
+        _gunAudioEventSO.RaiseEvent(_gunAttributesSO.reloadSoundSO);
         yield return new WaitForSeconds(time);
         _curBullet = _gunAttributesSO.numberBullet;
         _curBulletEventSO.RaiseEvent(_curBullet);

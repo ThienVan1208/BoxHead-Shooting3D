@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - LazerBullet
   - EnemyBullet
+  - OutsideAudioPlayer
   layers:
   - Default
   - TransparentFX

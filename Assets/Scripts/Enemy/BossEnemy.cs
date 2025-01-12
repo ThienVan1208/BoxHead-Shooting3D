@@ -10,6 +10,7 @@ public class BossEnemy : EnemyBase
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private List<GameObject> _bulletPool = new List<GameObject>();
     [SerializeField] private Transform _bulletPos;
+    [SerializeField] private BossAudio _bossAudio;
     private Stack<GameObject> _bulletStack = new Stack<GameObject>();
     private Coroutine _crt;
     private void Awake(){
@@ -43,6 +44,7 @@ public class BossEnemy : EnemyBase
         if(_outOfBullet) return;
 
         _isAttack = true;
+        _bossAudio.GetShootAudio();
         if (_bulletStack.Count != 0)
         {
             GameObject usedBullet = _bulletStack.Pop();
@@ -62,7 +64,6 @@ public class BossEnemy : EnemyBase
     private IEnumerator AttackMain(float time){
         while(true){
             HelpAttacking();
-            Debug.Log("boss attacks");
             yield return new WaitForSeconds(time);
         }
     }

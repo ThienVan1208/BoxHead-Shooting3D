@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 20
   _changeHPEventSO: {fileID: 11400000, guid: ebcf5adb05f20ca41a15c376d432ac3e, type: 2}
+  _enemyScaleDamageSO: {fileID: 11400000, guid: 0cfd6dedcbbb3ef4fbecbfbe3797bf7a, type: 2}
 --- !u!65 &6024887548058361929
 BoxCollider:
   m_ObjectHideFlags: 0
