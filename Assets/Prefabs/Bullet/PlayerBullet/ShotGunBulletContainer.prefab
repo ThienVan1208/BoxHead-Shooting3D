@@ -868,6 +868,7 @@ MonoBehaviour:
   - {fileID: 8386749083131751543}
   - {fileID: 8021457277994557211}
   - {fileID: 7788328079745629697}
+  _timeExist: 0.7
 --- !u!1 &4064762790186488788
 GameObject:
   m_ObjectHideFlags: 0

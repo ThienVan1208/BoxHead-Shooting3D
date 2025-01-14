@@ -315,6 +315,7 @@ MonoBehaviour:
   _bulletContainerSO: {fileID: 11400000, guid: 88b0058394e60ac4fa11e1a7d9a2e781, type: 2}
   _bulletList:
   - {fileID: 2872127521975918513}
+  _timeExist: 2
 --- !u!1001 &1689486850055173830
 PrefabInstance:
   m_ObjectHideFlags: 0

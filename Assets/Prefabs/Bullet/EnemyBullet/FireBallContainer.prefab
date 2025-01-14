@@ -24814,6 +24814,7 @@ MonoBehaviour:
   _bulletContainerSO: {fileID: 11400000, guid: 776af48bf7075504896af7aebcde8838, type: 2}
   _bulletList:
   - {fileID: 5346332704539544814}
+  _timeExist: 5
 --- !u!1 &7611177690881067627
 GameObject:
   m_ObjectHideFlags: 0

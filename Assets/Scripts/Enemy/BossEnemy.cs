@@ -13,8 +13,13 @@ public class BossEnemy : EnemyBase
     [SerializeField] private BossAudio _bossAudio;
     private Stack<GameObject> _bulletStack = new Stack<GameObject>();
     private Coroutine _crt;
-    private void Awake(){
+    protected override void Awake(){
+        base.Awake();
         Init();
+    }
+    protected override void OnEnable(){
+        base.OnEnable();
+        if(_outOfBullet) ReloadBullet();
     }
     private void Init()
     {
@@ -48,7 +53,7 @@ public class BossEnemy : EnemyBase
         if (_bulletStack.Count != 0)
         {
             GameObject usedBullet = _bulletStack.Pop();
-            usedBullet.transform.forward = -transform.forward;
+            usedBullet.transform.forward = transform.forward;
             usedBullet.transform.position = _bulletPos.position;
             
             usedBullet.SetActive(true);

@@ -8,14 +8,16 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private Sparkle _sparkleEffect;
     [SerializeField] protected LayerMask _layer;
-    private void OnEnable() {
+    
+    protected virtual void OnEnable() {
         MoveForward();
     }
-    private void OnDisable() {
+    protected virtual void OnDisable() {
         _sparkleEffect.transform.position = transform.position;
         _sparkleEffect.transform.forward = transform.forward;
         _sparkleEffect.ActiveSpark();
         _rb.velocity = Vector3.zero;
+        
     }
     private void MoveForward(){
         _rb.velocity = transform.forward * _speed;

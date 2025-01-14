@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,34 +7,80 @@ using UnityEngine.PlayerLoop;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private EnemySpawnerSO _enemySpawnerSO;
-    [SerializeField] private List<Transform> _spawnPos;
-    private int realNum;
-    private void Awake() {
+    [SerializeField] private List<GameObject> _enemyList = new List<GameObject>();
+    [SerializeField] private List<GameObject> _bossList = new List<GameObject>();
+    private void Awake()
+    {
         Init();
     }
-    private void Start() {
-        ActiveSpawnPos(0, 50, 2f);
+    private void OnEnable() {
+        ReleaseFinalEnemy(50, true);
     }
-    private void Init(){
-        realNum = _enemySpawnerSO.initNum * _spawnPos.Count;
-        _enemySpawnerSO.enemySpawnerList.Clear();
-        for(int i = 0; i < realNum; i++){
-            GameObject newEnemy = Instantiate(_enemySpawnerSO.enemyPrefab, _spawnPos[i % _spawnPos.Count].position, Quaternion.identity);
-            _enemySpawnerSO.enemySpawnerList.Add(newEnemy);
+    private void Init()
+    {
+        // Initialize enemy.
+        for (int i = 0; i < _enemySpawnerSO.initNum; i++)
+        {
+            GameObject newEnemy = Instantiate(_enemySpawnerSO.enemyPrefab, transform.position, Quaternion.identity);
             newEnemy.SetActive(false);
+            _enemyList.Add(newEnemy);
+        }
+
+        // Initialize boss.
+        int bossNum = Mathf.Clamp(_enemySpawnerSO.initNum / 10, 1, 20);
+        for (int i = 0; i < bossNum; i++)
+        {
+            GameObject bossEnemy = Instantiate(_enemySpawnerSO.bossPrefab, transform.position, Quaternion.identity);
+            bossEnemy.SetActive(false);
+            _bossList.Add(bossEnemy);
         }
     }
-    private void ActiveSpawnPos(int index, int num, float time){
-        StartCoroutine(WaitSpawner(index, num * _spawnPos.Count, time));
-    }
-    private IEnumerator WaitSpawner(int index, int num, float time){
-        for(int i = 0; i < num; i++){
-            if(index == (i % _spawnPos.Count)){
-                _enemySpawnerSO.enemySpawnerList[i].transform.position = _spawnPos[index].position;
-                yield return new WaitForSeconds(time);
-                _enemySpawnerSO.enemySpawnerList[i].SetActive(true);
-            }
+
+    public void ReleaseFinalEnemy(int num, bool hasBoss = false)
+    {
+        StartCoroutine(HelpReleasingEnemy(num, _enemySpawnerSO.delaySpawnEnemy));
+        if (hasBoss)
+        {
+            float timeSpawner = Mathf.Clamp(_enemySpawnerSO.delaySpawnEnemy * (num / 10), 3, 10);
+            StartCoroutine(HelpReleasingBoss(num, timeSpawner));
         }
     }
-    
+    private IEnumerator HelpReleasingEnemy(int num, float time)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            yield return new WaitForSeconds(time);
+            GameObject enemy = GetEnemy();
+            if (enemy != null) enemy.SetActive(true);
+            else i--;
+        }
+    }
+    private IEnumerator HelpReleasingBoss(int num, float time)
+    {
+        int bossNum = Mathf.Clamp(num / 10, 1, 20);
+        for (int i = 0; i < bossNum; i++)
+        {
+            yield return new WaitForSeconds(time);
+            GameObject boss = GetBoss();
+            if (boss != null) boss.SetActive(true);
+            else i--;
+        }
+    }
+    private GameObject GetEnemy()
+    {
+        for (int i = 0; i < _enemyList.Count; i++)
+        {
+            if (!_enemyList[i].activeSelf) return _enemyList[i];
+        }
+        return null;
+    }
+    private GameObject GetBoss()
+    {
+        for (int i = 0; i < _bossList.Count; i++)
+        {
+            if (!_bossList[i].activeSelf) return _bossList[i];
+        }
+        return null;
+    }
+
 }
