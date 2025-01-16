@@ -130,7 +130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 20
   _changeHPEventSO: {fileID: 11400000, guid: ebcf5adb05f20ca41a15c376d432ac3e, type: 2}
-  _enemyScaleDamageSO: {fileID: 11400000, guid: 0cfd6dedcbbb3ef4fbecbfbe3797bf7a, type: 2}
 --- !u!65 &6024887548058361929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -250,6 +249,7 @@ GameObject:
   - component: {fileID: 1592615192999669369}
   - component: {fileID: 2351641701911920248}
   - component: {fileID: 984786460323035445}
+  - component: {fileID: 7587413475191387282}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -333,7 +333,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3431811328903705403}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -368,12 +368,14 @@ MonoBehaviour:
   _rb: {fileID: 8399619384590047184}
   _curHP: 0
   _maxHP: 5
-  _hitBackForce: 10
+  _hitBackForce: 200
   _playerTransformSO: {fileID: 11400000, guid: 214430d3a661e3e49982d52c9bd9b3d3, type: 2}
   _gunManagerSO: {fileID: 11400000, guid: d93c3c852e42c874f8799bb61305a55f, type: 2}
   _navMeshAgent: {fileID: 2351641701911920248}
   _timeToUpdateChase: 1
   _DamageEventChannelSO: {fileID: 11400000, guid: 6d232a934e4e40f40811d6936f38baef, type: 2}
+  _enemySpawnManager: {fileID: 0}
+  initPos: {x: 0, y: 0, z: 0}
 --- !u!195 &2351641701911920248
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -395,7 +397,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!136 &984786460323035445
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -413,11 +415,32 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &7587413475191387282
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3431811328903705403}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5738977120146158926
 GameObject:

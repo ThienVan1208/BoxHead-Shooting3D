@@ -17,7 +17,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7a3c1a1d488c7b54fb5e778d2f857a28, type: 2}
   - {fileID: 11400000, guid: 8d3a1623560b8a2429e137a0d3204a5c, type: 2}
   playerDieEventSO: {fileID: 11400000, guid: 9844c2e1d159b7442b7c6c027db37bdd, type: 2}
-  curGun: 0
-  prevGun: 2
-  curDamage: 1
+  gunInfoEventSO: {fileID: 11400000, guid: 53bfd6034e54ec0479ceacdda9858e6d, type: 2}
+  curGun: 1
+  prevGun: 0
+  curDamage: 2
   canChangeGun: 1

@@ -11,8 +11,8 @@ public class GunManager : MonoBehaviour
     // Used to change gun damage causing for enemy. This event is subcribed in Enemy class.
     [SerializeField] private FloatEventChannelSO _DamageEventChannelSO;
 
-    // Used to change UI for gun information. It is subcribed in GunUI class.
-    [SerializeField] private GunInfoEventChannel _gunInfoEventSO;
+    
+    //[SerializeField] private GunInfoEventChannel _gunInfoEventSO;
 
     [SerializeField] private VoidEventChannelSO _inactiveReloadTimerEventSO;
 
@@ -81,7 +81,7 @@ public class GunManager : MonoBehaviour
         _DamageEventChannelSO.RaiseEvent(_gunManagerSO.curDamage);
 
         // Change UI for gun infor.
-        _gunInfoEventSO.RaiseEvent(_gunManagerSO.gunList[_gunManagerSO.curGun].gunName
+        _gunManagerSO.gunInfoEventSO.RaiseEvent(_gunManagerSO.gunList[_gunManagerSO.curGun].gunName
                                 , _gunManagerSO.gunList[_gunManagerSO.curGun].numberBullet
                                 , _gunManagerSO.gunList[_gunManagerSO.curGun].totalBullet);
     }
@@ -113,7 +113,7 @@ public class GunManager : MonoBehaviour
         _gunManagerSO.GetElemGunAttribute().canShoot = true;
         _gunManagerSO.curDamage = _inGameList[_gunManagerSO.curGun].Value;
         _DamageEventChannelSO.RaiseEvent(_inGameList[_gunManagerSO.curGun].Value);
-        _gunInfoEventSO.RaiseEvent(_gunManagerSO.gunList[_gunManagerSO.curGun].gunName
+        _gunManagerSO.gunInfoEventSO.RaiseEvent(_gunManagerSO.gunList[_gunManagerSO.curGun].gunName
                                 , _gunManagerSO.gunList[_gunManagerSO.curGun].numberBullet
                                 , _gunManagerSO.gunList[_gunManagerSO.curGun].totalBullet);
     }

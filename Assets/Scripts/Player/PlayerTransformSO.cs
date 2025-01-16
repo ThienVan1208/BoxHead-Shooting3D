@@ -9,4 +9,7 @@ public class PlayerTransformSO : ScriptableObject {
     public void Init(Transform initTransform) {
         playerTransform = initTransform;
     }
+    private void OnEnable() {
+        if (playerTransform == null) playerTransform.position = Vector3.zero;
+    }
 }

@@ -14,10 +14,12 @@ public class EnemySpawner : MonoBehaviour
         Init();
     }
     private void OnEnable() {
-        ReleaseFinalEnemy(50, true);
+        //ReleaseFinalEnemy(50, true);
     }
     private void Init()
     {
+        _enemyList.Clear();
+        _bossList.Clear();
         // Initialize enemy.
         for (int i = 0; i < _enemySpawnerSO.initNum; i++)
         {

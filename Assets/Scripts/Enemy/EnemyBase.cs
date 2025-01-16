@@ -20,15 +20,24 @@ public class EnemyBase : MonoBehaviour
 
     // Used to change damage taken.
     [SerializeField] private FloatEventChannelSO _DamageEventChannelSO;
+    [SerializeField] protected EnemySpawnManager _enemySpawnManager = EnemySpawnManager.Instance;
     protected bool _isAttack = false;
     private float _damageTaken;
-    protected virtual void Awake(){
+    [SerializeField] protected Vector3 initPos;
+    protected virtual void Awake()
+    {
+        
         _playerTransformSO.Init(transform);
+        initPos = transform.position;
+    }
+    protected virtual void Start(){
+        _enemySpawnManager = EnemySpawnManager.Instance;
     }
     protected virtual void OnEnable()
     {
         _isAttack = false;
         _damageTaken = _gunManagerSO.curDamage;
+        _maxHP *= EnemyScaleDamageSO.scale;
         _curHP = _maxHP;
         _DamageEventChannelSO.OnRaisedEvent += ChangeDamageTaken;
 
@@ -38,15 +47,20 @@ public class EnemyBase : MonoBehaviour
     {
         _DamageEventChannelSO.OnRaisedEvent -= ChangeDamageTaken;
     }
-
+    private bool IsPointOnNavMesh(Vector3 position)
+    {
+        NavMeshHit hit;
+        return NavMesh.SamplePosition(position, out hit, 1f, NavMesh.AllAreas);
+    }
     private void ChasePlayer()
     {
-        // float curSpeed = _isAttack ? 0 : _speed;
-        // //if(_isAttack) return;
-        // Vector3 dir = _playerTransformSO.playerTransform.transform.position - transform.position;
-        // _rb.velocity = dir * curSpeed;
-        // transform.forward = -dir;
-        _navMeshAgent.SetDestination(_playerTransformSO.playerTransform.position);
+        if (IsPointOnNavMesh(_playerTransformSO.playerTransform.position))
+        {
+            _navMeshAgent.SetDestination(_playerTransformSO.playerTransform.position);
+        }
+        else{
+            transform.position = initPos;
+        }
     }
     private IEnumerator WaitUpdateChasePlayer(float time)
     {
@@ -66,7 +80,7 @@ public class EnemyBase : MonoBehaviour
     }
     private void GetHitEffect(Transform dir, float hitBack)
     {
-        _rb.AddForce(dir.forward * hitBack, ForceMode.Impulse);
+        _rb.AddForce(new Vector3(0f, 0f, dir.forward.z) * hitBack);
         _curHP -= _damageTaken;
         CheckDie();
     }
@@ -80,6 +94,7 @@ public class EnemyBase : MonoBehaviour
     }
     private void Die()
     {
+        if(_enemySpawnManager != null) _enemySpawnManager.CheckNextStage();
         gameObject.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
@@ -93,7 +108,7 @@ public class EnemyBase : MonoBehaviour
     {
         if (other.gameObject.tag == Constant.TAG_LAZER_BULLET)
         {
-            GetHitEffect(other.transform, _damageTaken);
+            GetHitEffect(other.transform, _damageTaken * Time.deltaTime);
         }
     }
 }

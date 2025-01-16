@@ -5,7 +5,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyScaleDamageSO", menuName = "Enemy/EnemyScaleDamage")]
 public class EnemyScaleDamageSO : ScriptableObject {
-    public float scale = 1;
+    public static float scale = 1;
     [SerializeField] private FloatEventChannelSO _ScaleEnemyDamageEventSO;
     private void OnEnable() {
         _ScaleEnemyDamageEventSO.OnRaisedEvent += ChangeScale;

@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 363200272064926498}
   - component: {fileID: 6110705962160731682}
   - component: {fileID: 7695522128011053585}
+  - component: {fileID: 4855375058641228591}
   m_Layer: 8
   m_Name: BossEnemy
   m_TagString: Enemy
@@ -268,7 +269,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7707980241548303077}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -302,13 +303,15 @@ MonoBehaviour:
   _speed: 1
   _rb: {fileID: 2030870362896188273}
   _curHP: 50
-  _maxHP: 50
-  _hitBackForce: 10
+  _maxHP: 20
+  _hitBackForce: 200
   _playerTransformSO: {fileID: 11400000, guid: 214430d3a661e3e49982d52c9bd9b3d3, type: 2}
   _gunManagerSO: {fileID: 11400000, guid: d93c3c852e42c874f8799bb61305a55f, type: 2}
   _navMeshAgent: {fileID: 6110705962160731682}
   _timeToUpdateChase: 1
   _DamageEventChannelSO: {fileID: 11400000, guid: 6d232a934e4e40f40811d6936f38baef, type: 2}
+  _enemySpawnManager: {fileID: 0}
+  initPos: {x: 0, y: 0, z: 0}
   _bulletNum: 10
   _timeAttack: 1
   _timeReload: 3
@@ -345,7 +348,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 200
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -353,7 +356,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!136 &7695522128011053585
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -371,11 +374,32 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4855375058641228591
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707980241548303077}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8097826592343585080
 GameObject:
