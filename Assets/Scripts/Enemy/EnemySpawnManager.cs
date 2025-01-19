@@ -34,12 +34,16 @@ public class EnemySpawnManager : MonoBehaviour
     }
     private IEnumerator GetNextStage(){
         _delayNextStage = true;
-        _curEnemy = _enemyEachStage;
+        
         yield return new WaitForSeconds(timeDelayEachStage);
         _delayNextStage = false;
-        if(_curStage == 1) _spawnList[0].ReleaseFinalEnemy(10, false);
+        if(_curStage == 1) {
+            _curEnemy = _enemyEachStage;
+            _spawnList[0].ReleaseFinalEnemy(10, false);
+        }
         else{
             _enemyEachStage = Mathf.CeilToInt((float)_enemyEachStage * 1.25f);
+            _curEnemy = _enemyEachStage;
             foreach(var spawner in _spawnList){
                 spawner.ReleaseFinalEnemy(_enemyEachStage, true);
             }

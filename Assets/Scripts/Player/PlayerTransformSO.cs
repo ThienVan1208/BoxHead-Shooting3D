@@ -5,11 +5,9 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerTransformSO", menuName = "Player/PlayerTransformSO")]
 public class PlayerTransformSO : ScriptableObject {
-    public Transform playerTransform;
-    public void Init(Transform initTransform) {
-        playerTransform = initTransform;
+    public Vector3 playerPos;
+    public void Init(Vector3 initPos) {
+        playerPos = initPos;
     }
-    private void OnEnable() {
-        if (playerTransform == null) playerTransform.position = Vector3.zero;
-    }
+    
 }

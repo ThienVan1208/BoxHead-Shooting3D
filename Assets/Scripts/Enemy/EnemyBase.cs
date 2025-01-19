@@ -23,14 +23,15 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] protected EnemySpawnManager _enemySpawnManager = EnemySpawnManager.Instance;
     protected bool _isAttack = false;
     private float _damageTaken;
-    [SerializeField] protected Vector3 initPos;
+    protected Vector3 _initPos;
     protected virtual void Awake()
     {
-        
-        _playerTransformSO.Init(transform);
-        initPos = transform.position;
+
+        //_playerTransformSO.Init(transform.position);
+        _initPos = transform.position;
     }
-    protected virtual void Start(){
+    protected virtual void Start()
+    {
         _enemySpawnManager = EnemySpawnManager.Instance;
     }
     protected virtual void OnEnable()
@@ -54,19 +55,23 @@ public class EnemyBase : MonoBehaviour
     }
     private void ChasePlayer()
     {
-        if (IsPointOnNavMesh(_playerTransformSO.playerTransform.position))
+        if (!_navMeshAgent.isOnNavMesh)
         {
-            _navMeshAgent.SetDestination(_playerTransformSO.playerTransform.position);
+            transform.position = _initPos;
+            return;
         }
-        else{
-            transform.position = initPos;
-        }
+
+        _navMeshAgent.SetDestination(_playerTransformSO.playerPos);
+
     }
     private IEnumerator WaitUpdateChasePlayer(float time)
     {
         while (true)
         {
+            _initPos = _playerTransformSO.playerPos * 2f;
+            _initPos.y = _playerTransformSO.playerPos.y;
             ChasePlayer();
+
             yield return new WaitForSeconds(time);
         }
     }
@@ -94,7 +99,7 @@ public class EnemyBase : MonoBehaviour
     }
     private void Die()
     {
-        if(_enemySpawnManager != null) _enemySpawnManager.CheckNextStage();
+        if (_enemySpawnManager != null) _enemySpawnManager.CheckNextStage();
         gameObject.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)

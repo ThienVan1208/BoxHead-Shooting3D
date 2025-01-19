@@ -17,7 +17,7 @@ public class PlayerControl : MonoBehaviour
     private bool _jumpDelay;
     private Transform _camBrain;
     private void Awake() {
-        _playerAttributesSO.playerTransformSO.playerTransform = transform;
+        _playerAttributesSO.playerTransformSO.playerPos = transform.position;
     }
     private void Start() {
         _jumpDelay = false;
@@ -66,7 +66,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void GetMoveDirection(){
         if(_playerAttributesSO.isDie) return;
-        //_playerAttributesSO.playerTransformSO.playerTransform = transform;
+        _playerAttributesSO.playerTransformSO.playerPos = transform.position;
         Vector2 movement = _inputReaderSO.GetPlayerPosition();
         Vector3 moveDir = new Vector3(movement.x, 0f, movement.y);
         moveDir = _camBrain.forward * moveDir.z + _camBrain.right * moveDir.x; 
