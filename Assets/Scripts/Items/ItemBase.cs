@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class ItemBase : MonoBehaviour
 {
-    //[SerializeField] protected ItemSO _itemSO;
+    [SerializeField] protected ItemContainer _itemContainer;
     protected float disMove = 1, timeMove = 3, rotateAngle = 359;
     protected Sequence moveSe, rotateSe;
 
@@ -14,6 +14,7 @@ public abstract class ItemBase : MonoBehaviour
         RotateY();
     }
     protected virtual void OnDisable(){
+        _itemContainer.GetActiveItem();
         StopAction();
     }
     protected abstract void GetItemEffect();

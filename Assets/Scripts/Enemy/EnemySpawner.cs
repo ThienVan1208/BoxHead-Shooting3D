@@ -67,7 +67,10 @@ public class EnemySpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(time);
             GameObject boss = GetBoss();
-            if (boss != null) boss.SetActive(true);
+            if (boss != null) {
+                boss.transform.position = transform.position;
+                boss.SetActive(true);
+            }
             else i--;
         }
     }
