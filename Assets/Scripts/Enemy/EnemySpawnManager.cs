@@ -8,6 +8,7 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField] private int _curStage = 1;
     [SerializeField] private int _enemyEachStage = 10;
     [SerializeField] private int _curEnemy = 0;
+    [SerializeField] private IntEventChannelSO _updateStageEventSO;
     private float timeDelayEachStage = 5f;
     private bool _delayNextStage = false;
 
@@ -31,6 +32,7 @@ public class EnemySpawnManager : MonoBehaviour
         _curEnemy = 0;
         _curStage = 1;
         _enemyEachStage = 10;
+        _updateStageEventSO.RaiseEvent(_curStage);
     }
     private IEnumerator GetNextStage(){
         _delayNextStage = true;
@@ -54,6 +56,7 @@ public class EnemySpawnManager : MonoBehaviour
         _curEnemy--;
         if(_curEnemy <= 0){
             _curStage++;
+            _updateStageEventSO.RaiseEvent(_curStage);
             StartCoroutine(GetNextStage());
         }
     }

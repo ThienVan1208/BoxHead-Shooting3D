@@ -373,9 +373,10 @@ MonoBehaviour:
   _gunManagerSO: {fileID: 11400000, guid: d93c3c852e42c874f8799bb61305a55f, type: 2}
   _navMeshAgent: {fileID: 2351641701911920248}
   _timeToUpdateChase: 1
+  _score: 1
+  _updateScoreEventSO: {fileID: 11400000, guid: 6e2bdbbbdc6ccce4583cefa90fe824cb, type: 2}
   _DamageEventChannelSO: {fileID: 11400000, guid: 6d232a934e4e40f40811d6936f38baef, type: 2}
   _enemySpawnManager: {fileID: 0}
-  initPos: {x: 0, y: 0, z: 0}
 --- !u!195 &2351641701911920248
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -17,6 +17,8 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] private GunManagerSO _gunManagerSO;
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private float _timeToUpdateChase = 1f;
+    [SerializeField] private int _score;
+    [SerializeField] private IntEventChannelSO _updateScoreEventSO;
 
     // Used to change damage taken.
     [SerializeField] private FloatEventChannelSO _DamageEventChannelSO;
@@ -99,6 +101,7 @@ public class EnemyBase : MonoBehaviour
     }
     private void Die()
     {
+        _updateScoreEventSO.RaiseEvent(_score);
         if (_enemySpawnManager != null) _enemySpawnManager.CheckNextStage();
         gameObject.SetActive(false);
     }
