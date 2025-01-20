@@ -19,7 +19,7 @@ public class BossEnemy : EnemyBase
     }
     protected override void OnEnable(){
         base.OnEnable();
-        if(_outOfBullet) ReloadBullet();
+        if(_outOfBullet) StartCoroutine(WaitForReloading(_timeReload));
     }
     private void Init()
     {
@@ -31,6 +31,8 @@ public class BossEnemy : EnemyBase
             _bulletStack.Push(newBullet);
         }
     }
+
+    // Use StartCorountine(WaitForReloading(time)) instead of ReloadBullet method.
     private void ReloadBullet(){
         for (int i = 0; i < _bulletPool.Count; i++){
             GameObject newBullet = _bulletPool[0];
@@ -44,6 +46,9 @@ public class BossEnemy : EnemyBase
         ReloadBullet();
         _outOfBullet = false;
     }
+
+
+    
     private void HelpAttacking()
     {
         if(_outOfBullet) return;

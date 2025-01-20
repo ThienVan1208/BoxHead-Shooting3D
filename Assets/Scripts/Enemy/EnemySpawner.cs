@@ -9,11 +9,15 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemySpawnerSO _enemySpawnerSO;
     [SerializeField] private List<GameObject> _enemyList = new List<GameObject>();
     [SerializeField] private List<GameObject> _bossList = new List<GameObject>();
+    private Coroutine _enemyCrt, _bossCrt;
+    private EnemySpawnManager _enemySpawnManager;
     private void Awake()
     {
+        _enemySpawnManager = EnemySpawnManager.Instance;
         Init();
     }
-    private void OnEnable() {
+    private void OnEnable()
+    {
         //ReleaseFinalEnemy(50, true);
     }
     private void Init()
@@ -40,11 +44,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void ReleaseFinalEnemy(int num, bool hasBoss = false)
     {
-        StartCoroutine(HelpReleasingEnemy(num, _enemySpawnerSO.delaySpawnEnemy));
+        _enemyCrt = StartCoroutine(HelpReleasingEnemy(num, _enemySpawnerSO.delaySpawnEnemy));
         if (hasBoss)
         {
             float timeSpawner = Mathf.Clamp(_enemySpawnerSO.delaySpawnEnemy * (num / 10), 3, 10);
-            StartCoroutine(HelpReleasingBoss(num, timeSpawner));
+            _bossCrt = StartCoroutine(HelpReleasingBoss(num, timeSpawner));
         }
     }
     private IEnumerator HelpReleasingEnemy(int num, float time)
@@ -52,12 +56,24 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < num; i++)
         {
             yield return new WaitForSeconds(time);
-            GameObject enemy = GetEnemy();
-            if (enemy != null) {
-                enemy.transform.position = transform.position;
-                enemy.SetActive(true);
+
+            if (!_enemySpawnManager.CheckCurEnemyOnScene())
+            {
+                //StopCoroutine(_enemyCrt);
+                //StopAllCoroutines();
+                i--;
             }
-            else i--;
+            else
+            {
+                GameObject enemy = GetEnemy();
+                if (enemy != null)
+                {
+                    enemy.transform.position = transform.position;
+                    enemy.SetActive(true);
+                    _enemySpawnManager._curEnemy++;
+                }
+                else i--;
+            }
         }
     }
     private IEnumerator HelpReleasingBoss(int num, float time)
@@ -67,7 +83,8 @@ public class EnemySpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(time);
             GameObject boss = GetBoss();
-            if (boss != null) {
+            if (boss != null)
+            {
                 boss.transform.position = transform.position;
                 boss.SetActive(true);
             }

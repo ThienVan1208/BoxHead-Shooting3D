@@ -19,6 +19,7 @@ public class GunBase : MonoBehaviour, IGun
     [SerializeField] protected Transform _bulletPos;
     [SerializeField] protected Animator _anim;
     [SerializeField] protected GameObject _gunFireEffect;
+    
     protected int _shootTriggerAnim = Animator.StringToHash("Shoot");
 
 
@@ -113,8 +114,6 @@ public class GunBase : MonoBehaviour, IGun
         _gunAttributesSO.outOfBullet = false;
         _curBulletEventSO.RaiseEvent(_gunAttributesSO.bulletStack.Count);
         _gunAttributesSO.changeTotalBulletEventSO.RaiseEvent(-reloadAmount);
-        
-        
     }
 
     // Used to initialize bullet pool in Awake.
