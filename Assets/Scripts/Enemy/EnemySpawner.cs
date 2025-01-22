@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     private EnemySpawnManager _enemySpawnManager;
     private void Awake()
     {
-        _enemySpawnManager = EnemySpawnManager.Instance;
+        //_enemySpawnManager = EnemySpawnManager.Instance;
         Init();
     }
     private void OnEnable()
@@ -57,20 +57,20 @@ public class EnemySpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(time);
 
-            if (!_enemySpawnManager.CheckCurEnemyOnScene())
+            //if (!_enemySpawnManager.CheckCurEnemyOnScene())
             {
                 //StopCoroutine(_enemyCrt);
                 //StopAllCoroutines();
                 i--;
             }
-            else
+            //else
             {
                 GameObject enemy = GetEnemy();
                 if (enemy != null)
                 {
                     enemy.transform.position = transform.position;
                     enemy.SetActive(true);
-                    _enemySpawnManager._curEnemy++;
+                    //_enemySpawnManager._curEnemy++;
                 }
                 else i--;
             }

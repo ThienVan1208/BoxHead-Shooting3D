@@ -22,7 +22,7 @@ public class EnemyBase : MonoBehaviour
 
     // Used to change damage taken.
     [SerializeField] private FloatEventChannelSO _DamageEventChannelSO;
-    [SerializeField] protected EnemySpawnManager _enemySpawnManager = EnemySpawnManager.Instance;
+    //[SerializeField] protected EnemySpawnManager _enemySpawnManager = EnemySpawnManager.Instance;
     protected bool _isAttack = false;
     private float _damageTaken;
     protected Vector3 _initPos;
@@ -34,7 +34,7 @@ public class EnemyBase : MonoBehaviour
     }
     protected virtual void Start()
     {
-        _enemySpawnManager = EnemySpawnManager.Instance;
+        //_enemySpawnManager = EnemySpawnManager.Instance;
     }
     protected virtual void OnEnable()
     {
@@ -102,7 +102,7 @@ public class EnemyBase : MonoBehaviour
     private void Die()
     {
         _updateScoreEventSO.RaiseEvent(_score);
-        if (_enemySpawnManager != null) _enemySpawnManager.CheckNextStage();
+        //if (_enemySpawnManager != null) _enemySpawnManager.CheckNextStage();
         gameObject.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
